@@ -1,0 +1,248 @@
+// Outer navigation wrapper
+.navigation {
+  height: $nav-height;
+  background: $nav-background;
+}
+
+// Logo and branding
+.brand {
+  position: absolute;
+  padding-left: 20px;
+  // padding: 0 0 0 5px !important;
+  float: left;
+  line-height: $nav-height;
+
+  a,
+  a:visited {
+    text-decoration: none;
+  }
+
+  .title {
+    // color: color(color-primary);
+    color: $nav-brand-color;
+    font-family: $font-primary;
+    font-weight: 600;
+    font-size: 1.5em;
+    letter-spacing: 1.55px;
+    text-align: center;
+  }
+}
+
+// Container with no padding for navbar
+.nav-container {
+  // max-width: $content-width;
+  max-width: 100vw;
+  // margin: 0 auto;
+  margin: 0 auto;
+}
+
+// Navigation
+nav {
+  float: right;
+  // margin-right: 25px;
+  // padding-right: 55px;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      float: left;
+      position: relative;
+
+      a,
+      a:visited {
+        display: block;
+        padding: 0 20px;
+        letter-spacing: 1.3px;
+        line-height: $nav-height;
+        background: $nav-background;
+        color: $nav-font-color;
+        text-decoration: none;
+
+        &:hover {
+          background: $link-hover-color;
+          color: $nav-font-color;
+        }
+
+        &:not(:only-child):after {
+          padding-left: 5px;
+          content: ' ▾';
+        }
+      }
+      a.active {
+        background: $link-hover-color;
+        color: $nav-font-color;
+      }
+
+      // Dropdown list
+      ul {
+        width: 100%;
+        li {
+          min-width: 145%;
+          text-align: center;
+          // min-width: 100%;
+        }
+      }
+
+      // ul li {
+      //   min-width: 190px;
+      //   a {
+      //     padding: 15px;
+      //     line-height: 20px;
+      //   }
+      // }
+    }
+  }
+
+  .nav-list {
+    a {
+      font-size: 0.9rem;
+      font-family: $font-primary;
+      font-weight: 600;
+    }
+  }
+}
+
+// Dropdown list binds to JS toggle event
+.nav-dropdown {
+  position: absolute;
+  right: 20%;
+  // left: 5%;
+  display: none;
+  z-index: 1;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  background-color: #212121;
+
+  & li:last-of-type a {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+  .account-username {
+    color: colors3(color-primary);
+
+    &:hover {
+      background-color: #212121;
+      color: colors3(md4);
+    }
+  }
+}
+
+/* Mobile navigation */
+
+// Binds to JS Toggle
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: $nav-background;
+  height: $nav-height;
+  width: $nav-height;
+
+  .nav-toggle {
+    display: none;
+  }
+}
+@media only screen and (max-width: 798px) {
+  // Hamburger nav visible on mobile only
+  .nav-mobile {
+    display: block;
+  }
+  nav {
+    width: 100%;
+    padding: $nav-height 0 15px;
+    ul {
+      display: none;
+      li {
+        float: none;
+        a {
+          padding: 15px;
+          line-height: 20px;
+        }
+
+        ul li a {
+          padding-left: 30px;
+        }
+      }
+    }
+  }
+
+  .nav-list {
+    position: absolute;
+  }
+
+  .nav-dropdown-item {
+    // width: 1000vw;
+  }
+
+  .nav-dropdown {
+    // display: none !important;
+    position: static;
+    left: 0;
+    width: 100vw !important;
+    // width: 300px !;
+    margin: 0 auto;
+
+    li {
+      min-width: 10% !important;
+      text-align: left;
+    }
+  }
+}
+@media screen and (min-width: $breakpoint) {
+  .nav-list {
+    display: block !important;
+  }
+
+  nav {
+    margin-right: 30px;
+  }
+}
+#nav-toggle {
+  position: absolute;
+  left: 18px;
+  top: 22px;
+  cursor: pointer;
+  padding: 10px 35px 16px 0px;
+  span,
+  span:before,
+  span:after {
+    cursor: pointer;
+    border-radius: 1px;
+    height: 3.5px;
+    width: 35px;
+    background: $nav-font-color;
+    position: absolute;
+    display: block;
+    content: '';
+    transition: all 300ms ease-in-out;
+  }
+  span:before {
+    top: -10px;
+  }
+  span:after {
+    bottom: -10px;
+  }
+  &.active span {
+    background-color: transparent;
+    &:before,
+    &:after {
+      top: 0;
+    }
+    &:before {
+      transform: rotate(45deg);
+    }
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+// Page content
+article {
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: 10px;
+}
